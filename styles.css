@@ -1,0 +1,920 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 10;
+}
+
+/* Spinner */
+.spinner {
+  border-top: 8px double #3498db;
+  border-bottom: 8px double #db0e0e;
+  border-left: 8px double #04f00b;
+  border-right: 8px double #eff30b;
+  transform: rotate(360deg);
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin-right: 15px;
+}
+
+/* Animation for spinner */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.nav {
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  text-align: center;
+}
+
+.nav li {
+  display: inline-block;
+  margin-left: -4px;
+  transition: background-color 0.3s;
+  padding: 14px 2px;
+}
+
+.nav a.active {
+  background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+  border-radius: 15px;
+}
+
+.nav li a {
+  color: #000;
+  text-decoration: none;
+  padding: 14px;
+}
+
+.nav li a:hover {
+  background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+  border-radius: 15px;
+}
+
+.nav ul input {
+  padding: 8px 50px;
+  border-radius: 20px;
+  background-color: #fff;
+  font-size: 15px;
+  border: 3px solid lightgreen;
+  margin-left: 50px;
+  outline: none;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 90%;
+  right: 260px;
+  width: 180px;
+  background-color: #ccc;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.submenu.show {
+  display: block;
+}
+
+.submenu li {
+  display: block;
+  padding: 2px;
+  margin: 0;
+  border-bottom: 1px solid #bbb;
+}
+
+.submenu li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+.submenu li a:hover {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.nav li:hover .submenu {
+  display: block;
+}
+
+.fa-user {
+  margin-left: 15px;
+}
+
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: -85px;
+  width: 200px;
+  background-color: #ccc;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu li {
+  display: block;
+  padding: 2px;
+  margin: 0;
+  border-bottom: 1px solid #bbb;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.user-menu:hover .dropdown-menu {
+  display: block;
+}
+
+.fa-magnifying-glass {
+  position: relative;
+  right: 32px;
+}
+
+/* Slogan */
+.slogan {
+  text-align: center;
+  padding: 180px;
+  background: rgb(185, 248, 170);
+  background: linear-gradient(
+    162deg,
+    rgba(185, 248, 170, 1) 0%,
+    rgba(193, 251, 243, 1) 50%,
+    rgba(240, 157, 214, 1) 100%
+  );
+  position: relative;
+}
+
+.slogan h1 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 3em;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideUp 2s ease-out forwards 0.5s;
+}
+
+.slogan p {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.5em;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideUp 2s ease-out forwards 1s;
+}
+
+.slogan button {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideUp 2s ease-out forwards 1.5s;
+}
+
+.slogan button:hover {
+  background-color: blue;
+}
+
+/* Keyframes cho hiệu ứng lướt lên */
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* CSS cho slider */
+.slider {
+  border: 20px solid pink;
+  border-radius: 20px;
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  overflow: hidden;
+  margin-top: 50px;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.slide img {
+  width: 100%;
+  display: block;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #ccc;
+  color: #000;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.dots {
+  text-align: center;
+  padding: 10px;
+}
+
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 5px;
+  background-color: pink;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #e32f8c;
+}
+
+.des {
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 20px 0;
+  margin: 25px;
+  background-color: pink;
+}
+
+.des p {
+  margin-bottom: 15px;
+}
+
+.des a {
+  text-decoration: none;
+  color: blue;
+  padding: 0 10px;
+}
+
+.des a:hover {
+  text-decoration: underline;
+}
+
+.des iframe,
+.des .vid {
+  width: 100%;
+  max-width: 68%; /* Tùy chỉnh nếu cần */
+  aspect-ratio: 16 / 9; /* Tỷ lệ 16:9 */
+  max-height: 80vh; /* Đảm bảo không vượt quá chiều cao màn hình */
+  height: auto; /* Chiều cao tự động để giữ tỷ lệ */
+  border: none; /* Loại bỏ viền nếu cần */
+}
+
+/* Product */
+main {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.product-category {
+  background-color: pink;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+.category-title {
+  margin-top: 0;
+  font-size: 1.8em;
+  color: #333;
+  text-align: center;
+}
+
+.product-list {
+  display: flex;
+  justify-content: center; /* Center products within the row */
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  background-color: #fff;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(25% - 20px); /* 4 items per row */
+  box-sizing: border-box;
+}
+
+.product-card img:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+.product-card button {
+  padding: 8px 25px;
+  background-color: pink;
+  border: 1px solid #f10894;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.product-card button:hover {
+  background-color: #f10894;
+  color: #fff;
+  transition: background-color 0.5s;
+}
+
+/* .product-card a{
+    text-decoration: none;
+    color: blue;
+} */
+
+.product-card a:hover {
+  text-decoration: underline;
+}
+
+.product-image {
+  max-width: 90%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.product-name {
+  font-size: 1.2em;
+  color: #333;
+  margin: 10px 0;
+}
+
+.product-price {
+  font-size: 1.1em;
+  color: #27ae60;
+}
+
+.product-description {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.sub-list {
+  display: none;
+  position: absolute;
+  top: 45px;
+  list-style-type: none;
+  background-color: lightblue;
+  width: 180px;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.product-child:hover .sub-list {
+  display: block;
+}
+
+.sub-list li {
+  display: block;
+  padding: 2px;
+  margin: 0;
+  border-bottom: 1px solid #bbb;
+}
+
+.sub-list li a {
+  text-decoration: none;
+  display: block;
+}
+
+/* Styles for cart modal */
+.cart-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+.cart-modal h3 {
+  margin-top: 0;
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.cart-items {
+  list-style-type: none;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+.cart-total {
+  font-weight: bold;
+  text-align: right;
+}
+.checkout-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#close-btn {
+  background-color: red;
+  color: white;
+  padding: 6px;
+}
+
+.cart-icon {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  padding: 3px 7px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Manage */
+.admin-container {
+  width: 650px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 2px solid #ccc;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  margin-top: 10px;
+  display: block;
+}
+
+#productCategory {
+  margin-top: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  margin-top: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Định dạng chung cho nút */
+button {
+  padding: 5px 10px;
+  margin: 2px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Nút "Sửa" với màu xanh */
+button.edit {
+  background-color: #4caf50;
+  color: white;
+  padding: 5px 18px;
+}
+
+button.edit:hover {
+  background-color: #45a049;
+}
+
+/* Nút "Xóa" với màu đỏ */
+button.delete {
+  background-color: #f44336;
+  color: white;
+}
+
+button.delete:hover {
+  background-color: #d32f2f;
+}
+
+/* Contact */
+.contact-section {
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.contact-section h2 {
+  margin-bottom: 15px;
+}
+
+.contact-information {
+  margin: 18px 0;
+}
+
+.map-section {
+  margin: 20px 0;
+}
+
+.map-section iframe {
+  width: 100%;
+  border: 0;
+}
+
+/* Contact Form styles */
+.contact-form {
+  background-color: pink;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-form h3 {
+  margin-top: 8px;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contact-form button {
+  background-color: #007aff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #0f0;
+}
+
+.notification {
+  display: none;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+}
+
+/* Footer */
+
+footer {
+  padding: 20px;
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-column,
+.right-column {
+  flex: 1;
+}
+
+.social-links,
+.copyright {
+  margin-bottom: 10px;
+  margin-left: 20%;
+}
+
+.social-links a {
+  display: inline-block;
+  margin-left: 30px;
+  text-decoration: none;
+  font-size: 30px;
+  transition: transform 0.4s ease;
+}
+
+.social-links a:hover {
+  transform: rotate(15deg) scale(1.6);
+}
+
+.contact-info p,
+.privacy-policy a {
+  margin: 10px 0;
+  margin-left: 50%;
+}
+
+.privacy-policy a {
+  text-decoration: none;
+  color: #333;
+}
+
+.privacy-policy a:hover {
+  text-decoration: underline;
+}
+
+/* User Information Page Styles */
+.user-info-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.user-info-container h2 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.info-box {
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  text-align: left;
+}
+
+.info-box h3 {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.info-box p {
+  font-size: 1em;
+  color: #666;
+  margin: 0;
+}
+
+/* Settings Page Styles */
+.settings-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.settings-container h2 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.settings-box {
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  text-align: left;
+}
+
+.settings-box h3 {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.settings-box label {
+  font-size: 0.9em;
+  color: #666;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.settings-box input[type="text"],
+.settings-box input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.settings-box button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.settings-box button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Thay Ä‘á»•i mÃ u cho thanh cuá»™n */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: pink;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #f30d69;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-horizontal {
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background-color: pink;
+}
+
+::-webkit-scrollbar-thumb:horizontal:hover {
+  background-color: pink;
+}
