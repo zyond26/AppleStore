@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Information</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://i.pinimg.com/736x/65/22/5a/65225ab6d965e5804a632b643e317bf4.jpg"
+    />
+
+    <style>
+      body {
+        background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      .btn1 {
+        background-color: #03f5ed;
+        padding: 12px 16px;
+        border: none;
+        margin: 15px;
+      }
+
+      .btn1 a {
+        text-decoration: none;
+        color: #000;
+      }
+
+      .btn1:hover {
+        background-color: #07f;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Màn hình loading -->
+    <div id="loading" class="loading-screen">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+
+    <button class="btn1">
+      <a href="home.html"><i class="fa-solid fa-house"></i> Home</a>
+    </button>
+    <div class="user-info-container">
+      <h2>User Information</h2>
+
+      <div class="info-box">
+        <h3>Username</h3>
+        <p id="displayUsername">[Username]</p>
+      </div>
+
+      <div class="info-box">
+        <h3>Password</h3>
+        <p id="displayPassword">[Password]</p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      // Retrieve and display the stored username and password from localStorage
+      const username = localStorage.getItem("username") || "Not set";
+      const password = localStorage.getItem("password") || "Not set";
+
+      document.getElementById(
+        "displayUsername"
+      ).innerText = `Username: ${username}`;
+      document.getElementById(
+        "displayPassword"
+      ).innerText = `Password: ${password}`;
+    </script>
+  </body>
+</html>

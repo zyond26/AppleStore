@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="reponsive.css">
+    <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/736x/65/22/5a/65225ab6d965e5804a632b643e317bf4.jpg">
+    <title>Contact</title>
+</head>
+<body>
+    <!-- Màn hình loading -->
+    <div id="loading" class="loading-screen">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+    <!-- Header -->
+    <header>
+        <!-- Nav Bar -->
+        <div class="nav">
+            <div class="logo">
+                <i class="fa-brands fa-apple" style="font-size: 25px; margin-right: 10px;"> Apple</i> 
+            </div>
+            <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+            <ul id="nav-menu">
+                <i class="fa-brands fa-apple" style="font-size: 25px; margin-right: 25px;">  Apple</i>
+                <li><a href="home.html"><i class="fa-solid fa-house"></i>  Home</a></li>
+                <li><a href="products.html"><i class="fa-solid fa-bag-shopping"></i>  Product</a></li>
+                <li><a href="manage.html"><i class="fa-solid fa-pen"></i>  Manage</a></li>
+                <li><a class="active" href="contact.html"><i class="fa-solid fa-phone"></i>  Contact</a></li>
+
+                <input type="search" placeholder="Search for product..."><i class="fa-solid fa-magnifying-glass"></i>
+
+                <li><a href=""><i class="fa-solid fa-truck-fast"></i>  Delivery</a></li>
+                <li>
+                    <a href="#" class="cart-icon" onclick="toggleCartModal()">
+                        <i class="fa-solid fa-cart-shopping"></i> Cart
+                        <span id="cartQuantityBadge" class="badge">0</span> <!-- Huy hiệu số lượng sản phẩm -->
+                    </a>
+                </li>
+                <li class="user-menu"><i class="fa-solid fa-user" style="background-color: lightblue; padding: 8px; border-radius: 22px; cursor: pointer; box-sizing: border-box;" onclick="toggleUserMenu()"></i>
+                    <ul class="dropdown-menu">
+                        <li><a href="user_info.html"><i class="fa-solid fa-circle-info"></i> User Information</a></li>
+                        <li><a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                        <li><a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="search-container">
+                <input type="text" placeholder="Search...">
+                <i class="fa fa-search"></i>
+            </div>
+        </div>
+
+        <!-- Slideshow -->
+        <div class="slider">
+            <div class="slides">
+                <div class="slide"><img src="https://cdnv2.tgdd.vn/mwg-static/common/News/1569860/iphone.jpg" alt="Slide 1"></div>
+                <div class="slide"><img src="https://file.hstatic.net/1000169499/file/dat-hang-iphone12-series-_-1140px-__2c9d5ca2827745e186234be25615a3e3.jpg" alt="Slide 2"></div>
+                <div class="slide"><img src="https://cdn.tgdd.vn/Products/Images/42/329149/Slider/vi-vn-iphone-16-pro-max-1.jpg" alt="Slide 3"></div>
+                <div class="slide"><img src="https://cdnv2.tgdd.vn/mwg-static/common/News/1569860/iphone.jpg" alt="Slide 1"></div>
+            </div>
+            <!-- Nút điều khiển -->
+            <button class="prev" onclick="prevSlide()">❮</button>
+            <button class="next" onclick="nextSlide()">❯</button>
+        
+            <!-- Chấm biểu thị slide -->
+            <div class="dots">
+                <span class="dot" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+
+        <!-- Shopping Cart -->
+        <div class="overlay" onclick="toggleCartModal()"></div>
+        <div class="cart-modal" id="cartModal">
+            <h3>Products</h3>
+            <ul class="cart-items" id="cartItems">
+                <!-- Danh sách sản phẩm sẽ được thêm vào đây -->
+            </ul>
+            <p class="cart-total">Total: $<span id="cartTotal">0</span></p>
+            <button class="checkout-button" onclick="checkout()">Check</button>
+            <button id="close-btn" onclick="toggleCartModal()">Close</button>
+        </div>
+    </header>
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <h2>Contact Us</h2>
+        <p>We're here to help with all your Apple product needs! Get in touch with us for support, product inquiries, or to find a store near you.</p>
+
+        <!-- Store Information -->
+        <div class="contact-information">
+            <h3>Store Information</h3>
+            <p><strong>Address:</strong> 123 Apple Store Avenue, Cityname, State, 12345</p>
+            <p><strong>Phone:</strong> +1 (123) 456-7890</p>
+            <p><strong>Email:</strong> support@apple-store.com</p>
+            <p><strong>Opening Hours:</strong> Mon - Sat: 9am - 8pm, Sun: 10am - 6pm</p>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-section">
+            <h3>Our Location</h3>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509433!2d144.9630579156849!3d-37.81362774205013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d5df1a9b1d3%3A0x5045675218ce6e0!2sApple%20Store!5e0!3m2!1sen!2sus!4v1605280177831!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <form id="contactForm">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required placeholder="John">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="examples@gmail.com">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="+84 0123456789">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" required placeholder="Your message ..."></textarea>
+                <button type="submit" onclick="handleFormSubmit(event)">Send Message</button>
+            </form>
+            <div class="notification" id="notification">Your message has been sent successfully!</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="left-column">
+                <div class="social-links">
+                    <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook" style="color: blue;"></i></a>
+                    <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter" style="color: rgb(26, 227, 221);"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram" style="color: rgb(228, 64, 95);"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin" style="color: #0a85e9;"></i></a>
+                    <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube" style="color: red;"></i></a>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+                </p>
+                </div>
+            </div>
+            <div class="right-column">
+                <div class="contact-info">
+                    <p>Contact: contact@example.com</p>
+                    <p>Phone: +84 123 456 789</p>
+                </div>
+                <div class="privacy-policy">
+                    <a href="">Privicy & policy</a>
+                </div>
+            </div>
+        </div>
+    </footer> 
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+    <script src="slider.js"></script>
+</body>
+</html>

@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="reponsive.css">
+    <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/736x/65/22/5a/65225ab6d965e5804a632b643e317bf4.jpg">
+    <title>Product</title>
+
+    <style>
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+        }
+
+        .modal-content {
+            background-color: #ccc;
+            margin: 5% auto;
+            padding: 20px;
+            border: 3px solid #0f0;
+            border-radius: 16px;
+            width: 80%;
+            max-width: 600px; /* Maximum width of the modal */
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: red;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Adjust the image size inside the modal */
+        #modalProductImage {
+            width: 100%; /* Set the width to 100% of its container (modal) */
+            height: auto; /* Maintain aspect ratio */
+            max-height: 400px; /* Set the maximum height of the image */
+            object-fit: contain; /* Ensure the image fits inside the box without being distorted */
+            margin-bottom: 20px; /* Space below the image */
+        }
+
+        #delivery {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Màn hình loading -->
+    <div id="loading" class="loading-screen">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+    <div class="container">
+          <!-- Nav Bar -->
+            <div class="nav">
+                <div class="logo">
+                    <i class="fa-brands fa-apple" style="font-size: 25px; margin-right: 10px;"> Apple</i> 
+                </div>
+                <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+                <ul id="nav-menu">
+                    <i class="fa-brands fa-apple" style="font-size: 25px; margin-right: 25px;">  Apple</i>
+                    <li><a href="home.html"><i class="fa-solid fa-house"></i>  Home</a></li>
+                    <li><a class="active" href="products.html"><i class="fa-solid fa-bag-shopping"></i>  Product</a></li>
+                    <li><a href="manage.html"><i class="fa-solid fa-pen"></i>  Manage</a></li>
+                    <li><a href="contact.html"><i class="fa-solid fa-phone"></i>  Contact</a></li>
+                    <input type="search" id="productSearch" placeholder="Search for products...">
+                    <i class="fa-solid fa-magnifying-glass" id="productSearch" onclick="searchProduct()" style="cursor: pointer;"></i>
+                    <li id="delivery"><a href=""><i class="fa-solid fa-truck-fast"></i>  Delivery</a></li>
+                    <li id="filter" style="margin: 0 12px;"><i class="fa-solid fa-filter"></i>  Filter 
+                        <ul class="submenu">
+                            <li><a href="#iphone">Iphone</a></li>
+                            <li><a href="#macbook">MacBook</a></li>
+                            <li><a href="#ipad">Ipad</a></li>
+                            <li><a href="#airpods">Airpods</a></li>
+                            <li><a href="#applewatch">Apple Watch</a></li>
+                            <li><a href="#accessories">Accessories</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="cart-icon" onclick="toggleCartModal()">
+                            <i class="fa-solid fa-cart-shopping"></i> Cart
+                            <span id="cartQuantityBadge" class="badge">0</span> <!-- Huy hiệu số lượng sản phẩm -->
+                        </a>
+                    </li>
+                    <li class="user-menu"><i class="fa-solid fa-user" style="background-color: lightblue; padding: 8px; border-radius: 22px; cursor: pointer; box-sizing: border-box;" onclick="toggleUserMenu()"></i>
+                        <ul class="dropdown-menu">
+                            <li><a href="user_info.html"><i class="fa-solid fa-circle-info"></i> User Information</a></li>
+                            <li><a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                            <li><a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="search-container">
+                    <input type="text" id="productSearch" placeholder="Search for products...">
+                    <i class="fa fa-search" id="productSearch" onclick="searchProduct()" style="cursor: pointer;"></i>
+                </div>
+            </div>
+            <!-- Sub-list for Product Categories -->
+            <ul class="sub-list">
+                <li><a href="#iphone">iPhone</a></li>
+                <li><a href="#macbook">MacBook</a></li>
+                <li><a href="#ipad">iPad</a></li>
+                <li><a href="#airpods">AirPods</a></li>
+                <li><a href="#applewatch">Apple Watch</a></li>
+                <li><a href="#accessories">Accessories</a></li>
+            </ul>​
+        <!-- Slider -->
+        <div class="slider">
+            <div class="slides">
+                <div class="slide"><img src="https://cdnv2.tgdd.vn/mwg-static/common/News/1569860/iphone.jpg" alt="Slide 1"></div>
+                <div class="slide"><img src="https://file.hstatic.net/1000169499/file/dat-hang-iphone12-series-_-1140px-__2c9d5ca2827745e186234be25615a3e3.jpg" alt="Slide 2"></div>
+                <div class="slide"><img src="https://cdn.tgdd.vn/Products/Images/42/329149/Slider/vi-vn-iphone-16-pro-max-1.jpg" alt="Slide 3"></div>
+                <div class="slide"><img src="https://cdnv2.tgdd.vn/mwg-static/common/News/1569860/iphone.jpg" alt="Slide 1"></div>
+            </div>
+            <!-- Controls -->
+            <button class="prev" onclick="prevSlide()">❮</button>
+            <button class="next" onclick="nextSlide()">❯</button>
+        
+            <div class="dots">
+                <span class="dot" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+
+        <!-- Shopping Cart -->
+        <div class="overlay" onclick="toggleCartModal()"></div>
+        <div class="cart-modal" id="cartModal">
+            <h3>Products</h3>
+            <ul class="cart-items" id="cartItems">
+                <!-- Danh sách sản phẩm sẽ được thêm vào đây -->
+            </ul>
+            <p class="cart-total">Total: $<span id="cartTotal">0</span></p>
+            <button class="checkout-button" onclick="checkout()">Check</button>
+            <button id="close-btn" onclick="toggleCartModal()">Close</button>
+        </div>
+
+        <!-- Modal structure -->
+        <div id="productModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <img id="modalProductImage" src="" alt="Product Image" style="width: 100%; height: auto; margin-bottom: 20px;">
+                <h3 id="modalProductName"></h3>
+                <p id="modalProductDescription"></p>
+                <p><strong>Price:</strong> <span id="modalProductPrice"></span></p>
+                <!-- Add any other details you need here -->
+            </div>
+        </div>
+
+        <!-- Content -->
+        <main>
+            <!-- iPhone Section -->
+            <div id="iphone"></div>
+            <div class="product-category">
+              <h2 class="category-title">iPhone</h2> <br>
+              <div class="product-list">
+                <div class="product-card" data-name="iPhone 15 pro" data-description="The latest iPhone with a powerful A17 chip." data-price="$999" data-image="https://product.hstatic.net/1000063620/product/ip-15-pro-max-mhm-xanh_9a4ac8db5bb34883956fc0704320830f.jpg">
+                    <img src="https://product.hstatic.net/1000063620/product/ip-15-pro-max-mhm-xanh_9a4ac8db5bb34883956fc0704320830f.jpg" alt="iPhone 15 Pro" class="product-image">
+                    <h3 class="product-name">iPhone 15 Pro</h3>
+                    <p class="product-price">$999</p>
+                    <p class="product-description">The latest iPhone with a powerful A17 chip.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('iPhone 15 Pro', 999, 'https://product.hstatic.net/1000063620/product/ip-15-pro-max-mhm-xanh_9a4ac8db5bb34883956fc0704320830f.jpg')">Buy</button>
+                </div>
+                <div class="product-card" data-name="iPhone 16" data-description="The latest iPhone with enhanced features and performance." data-price="$999" data-image="https://cdn.tgdd.vn/Products/Images/42/329137/s16/iphone-16-hong-650x650.png">
+                    <img src="https://cdn.tgdd.vn/Products/Images/42/329137/s16/iphone-16-hong-650x650.png" alt="iPhone 16" class="product-image">
+                    <h3 class="product-name">iPhone 16</h3>
+                    <p class="product-price">$999</p>
+                    <p class="product-description">The latest iPhone with enhanced features and performance.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('iPhone 16 ', 999, 'https://cdn.tgdd.vn/Products/Images/42/329137/s16/iphone-16-hong-650x650.png')">Buy</button>
+                </div>
+                <div class="product-card" data-name="iPhone 16 Pro Max" data-description="Advanced A18 Pro chip and the best camera yet." data-price="$1199" data-image="https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-16-pro-max.png">
+                    <img src="https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-16-pro-max.png" alt="iPhone 16 Pro Max" class="product-image">
+                    <h3 class="product-name">iPhone 16 Pro Max</h3>
+                    <p class="product-price">$1199</p>
+                    <p class="product-description">Advanced A18 Pro chip and the best camera yet.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('iPhone 16 Pro Max', 1199, 'https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-16-pro-max.png')">Buy</button>
+                </div>
+                <div class="product-card" data-name="iPhone 14 Pro" data-description="Stunning display and performance  with A16 Bionic chip." data-price="$899" data-image="https://cdn2.cellphones.com.vn/x/media/catalog/product/b/_/b_c_1_1.png">
+                    <img src="https://cdn2.cellphones.com.vn/x/media/catalog/product/b/_/b_c_1_1.png" alt="iPhone 14 Pro" class="product-image">
+                    <h3 class="product-name">iPhone 14 Pro</h3>
+                    <p class="product-price">$899</p>
+                    <p class="product-description">Stunning display and performance  with A16 Bionic chip.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('iPhone 14 Pro Max', 899, 'https://cdn2.cellphones.com.vn/x/media/catalog/product/b/_/b_c_1_1.png')">Buy</button>
+                </div>
+                <div class="product-card" data-name="iPhone 13" data-description="Powerful performance at a great price." data-price="$699" data-image="https://cdn2.cellphones.com.vn/358x/media/catalog/product/h/_/h_ng_4.jpg">
+                    <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/h/_/h_ng_4.jpg" alt="iPhone 13" class="product-image">
+                    <h3 class="product-name">iPhone 13</h3>
+                    <p class="product-price">$699</p>
+                    <p class="product-description">Powerful performance at a great price.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('iPhone 13', 699, 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/h/_/h_ng_4.jpg')">Buy</button>
+                </div>
+                <div class="product-card" data-name="iPhone 13 mini" data-description="Compact size with powerful features." data-price="$599" data-image="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/1/5/15_2_7_2_2.jpg">
+                    <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/1/5/15_2_7_2_2.jpg" alt="iPhone 13 Mini" class="product-image">
+                    <h3 class="product-name">iPhone 13 Mini</h3>
+                    <p class="product-price">$599</p>
+                    <p class="product-description">Compact size with powerful features.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('iPhone 13 Mini', 599, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/1/5/15_2_7_2_2.jpg')">Buy</button>
+                </div>
+                <div class="product-card"  data-name="iPhone 12" data-description="5G capable with a sleek design." data-price="$699" data-image="https://cdn2.cellphones.com.vn/358x/media/catalog/product/2/_/2._l_.jpg">
+                    <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/2/_/2._l_.jpg" alt="iPhone 12" class="product-image">
+                    <h3 class="product-name">iPhone 12</h3>
+                    <p class="product-price">$699</p>
+                    <p class="product-description">5G capable with a sleek design.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('iPhone 12', 699, 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/2/_/2._l_.jpg')">Buy</button>
+                </div>
+                <div class="product-card"  data-name="iPhone SE" data-description="The most affordable iPhone." data-price="$499" data-image="https://cdni.dienthoaivui.com.vn/x420,webp,q100/https://dashboard.dienthoaivui.com.vn/uploads/wp-content/uploads/2023/02/iphone-se-2020-do-1.jpg">
+                    <img src="https://cdni.dienthoaivui.com.vn/x420,webp,q100/https://dashboard.dienthoaivui.com.vn/uploads/wp-content/uploads/2023/02/iphone-se-2020-do-1.jpg" alt="iPhone SE" class="product-image">
+                    <h3 class="product-name">iPhone SE</h3>
+                    <p class="product-price">$499</p>
+                    <p class="product-description">The most affordable iPhone.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('iPhone SE', 499, 'https://cdni.dienthoaivui.com.vn/x420,webp,q100/https://dashboard.dienthoaivui.com.vn/uploads/wp-content/uploads/2023/02/iphone-se-2020-do-1.jpg')">Buy</button>
+                </div>
+              </div>
+            </div>
+        
+            <!-- MacBook Section -->
+            <div id="macbook"></div>
+            <div class="product-category">
+              <h2 class="category-title" id="macbook">MacBook</h2> <br>
+              <div class="product-list">
+                <div class="product-card"  data-name="MacBook Pro 16" data-description="The ultimate MacBook for professionals." data-price="$2399" data-image="https://cdn2.cellphones.com.vn/x/media/catalog/product/m/a/macbook-pro-16-inch-m3-max-2023_1__3.png">
+                    <img src="https://cdn2.cellphones.com.vn/x/media/catalog/product/m/a/macbook-pro-16-inch-m3-max-2023_1__3.png" alt="MacBook Pro 16" class="product-image">
+                    <h3 class="product-name">MacBook Pro 16</h3>
+                    <p class="product-price">$2399</p>
+                    <p class="product-description">The ultimate MacBook for professionals.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('MacBook Pro 16', 2399, 'https://cdn2.cellphones.com.vn/x/media/catalog/product/m/a/macbook-pro-16-inch-m3-max-2023_1__3.png')">Buy</button>
+                </div>
+                <div class="product-card"  data-name="MacBook Air" data-description="The MacBook Air is Apple’s ultra-thin, lightweight laptop." data-price="$999" data-image="https://cdn2.cellphones.com.vn/x/media/catalog/product/m/a/macbook_air_m2_4_1.jpg">
+                    <img src="https://cdn2.cellphones.com.vn/x/media/catalog/product/m/a/macbook_air_m2_4_1.jpg" alt="MacBook Air" class="product-image">
+                    <h3 class="product-name">MacBook Air</h3>
+                    <p class="product-price">$999</p>
+                    <p class="product-description">The MacBook Air is Apple’s ultra-thin, lightweight laptop.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('MacBook Air', 999, 'https://cdn2.cellphones.com.vn/x/media/catalog/product/m/a/macbook_air_m2_4_1.jpg')">Buy</button>
+                </div>
+                <div class="product-card"  data-name="MacBook Pro 13" data-description="The perfect balance of power and portability." data-price="$1299" data-image="https://cdn.tgdd.vn/Products/Images/44/282828/s16/apple-macbook-pro-13-inch-m2-2022-1-1-650x650.jpg">
+                    <img src="https://cdn.tgdd.vn/Products/Images/44/282828/s16/apple-macbook-pro-13-inch-m2-2022-1-1-650x650.jpg" alt="MacBook Pro" class="product-image">
+                    <h3 class="product-name">MacBook Pro 13</h3>
+                    <p class="product-price">$1299</p>
+                    <p class="product-description">The perfect balance of power and portability.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('MacBook Pro 13', 1299, 'https://cdn.tgdd.vn/Products/Images/44/282828/s16/apple-macbook-pro-13-inch-m2-2022-1-1-650x650.jpg')">Buy</button>
+                </div>
+                <div class="product-card"  data-name="MacBook Pro 14" data-description="Powerful laptop designed for professionals and enhanced graphics." data-price="$1999" data-image="https://cdn2.cellphones.com.vn/x/media/catalog/product/v/n/vn_macbook_pro_14_in_m3_pro_max_silver_pdp_image_position-1_3.jpg">
+                    <img src="https://cdn2.cellphones.com.vn/x/media/catalog/product/v/n/vn_macbook_pro_14_in_m3_pro_max_silver_pdp_image_position-1_3.jpg" alt="MacBook Pro 14" class="product-image">
+                    <h3 class="product-name">MacBook Pro 14</h3>
+                    <p class="product-price">$1999</p>
+                    <p class="product-description">Powerful laptop designed for professionals and enhanced graphics.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('MacBook Pro 14', 1999, 'https://cdn2.cellphones.com.vn/x/media/catalog/product/v/n/vn_macbook_pro_14_in_m3_pro_max_silver_pdp_image_position-1_3.jpg')">Buy</button>
+                </div>
+              </div>
+            </div>
+        
+            <!-- iPad Section -->
+            <div id="ipad"></div>
+            <div class="product-category">
+              <h2 class="category-title">iPad</h2> <br>
+              <div class="product-list">
+                <div class="product-card"  data-name="iPad Air" data-description="Versatile, lightweight tablet with a 10.9-inch Liquid Retina display." data-price="$599" data-image="https://cdn2.cellphones.com.vn/358x/media/catalog/product/9/_/9_44_7.jpg">
+                    <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/9/_/9_44_7.jpg" alt="iPad Air" class="product-image">
+                    <h3 class="product-name">iPad Air</h3>
+                    <p class="product-price">$599</p>
+                    <p class="product-description">Versatile, lightweight tablet with a 10.9-inch Liquid Retina display.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('iPad Air', 599, 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/9/_/9_44_7.jpg')">Buy</button>
+                </div>
+                <div class="product-card"  data-name="iPad Pro 12.9" data-description="Powerful iPad with stunning display." data-price="$1099" data-image="https://rauvang.com/data/Product/ipad-pro-13-select-202210.htm_1666161641.png">
+                    <img src="https://rauvang.com/data/Product/ipad-pro-13-select-202210.htm_1666161641.png" alt="iPad Pro" class="product-image">
+                    <h3 class="product-name">iPad Pro 12.9"</h3>
+                    <p class="product-price">$1099</p>
+                    <p class="product-description">Powerful iPad with stunning display.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('iPad Pro 12.9', 1099, 'https://rauvang.com/data/Product/ipad-pro-13-select-202210.htm_1666161641.png')">Buy</button>
+                </div>
+                <div class="product-card"  data-name="iPad 10" data-description="Features a 10.9-inch Liquid Retina display, A14 Bionic chip" data-price="$499" data-image="https://cdn2.cellphones.com.vn/358x/media/catalog/product/v/n/vnaggf.png">
+                    <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/v/n/vnaggf.png" alt="iPad 10" class="product-image">
+                    <h3 class="product-name">iPad 10</h3>
+                    <p class="product-price">$499</p>
+                    <p class="product-description">Features a 10.9-inch Liquid Retina display, A14 Bionic chip</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('iPad 10', 499, 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/v/n/vnaggf.png')">Buy</button>
+                </div>
+                <div class="product-card"  data-name="iPad Mini" data-description="Compact and powerful, perfect for portability." data-price="$399" data-image="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-mini-6-04_3_1_1_2.jpg">
+                    <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-mini-6-04_3_1_1_2.jpg" alt="iPad Mini" class="product-image">
+                    <h3 class="product-name">iPad Mini</h3>
+                    <p class="product-price">$399</p>
+                    <p class="product-description">Compact and powerful, perfect for portability.</p>
+                    <!-- <a href="">More Info ❯</a> -->
+                    <button class="buy-button" onclick="addToCart('iPad Mini', 399, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-mini-6-04_3_1_1_2.jpg')">Buy</button>
+                </div>
+              </div>
+            </div>
+        
+            <!-- Category: AirPods -->
+            <div id="airpods"></div>
+            <div class="product-category" >
+                <h2 class="category-title">AirPods</h2> <br>
+                <div class="product-list">
+                    <div class="product-card"  data-name="AirPods Pro" data-description="Active noise cancellation and immersive sound." data-price="$249" data-image="https://24hstore.vn/images/products/2022/12/02/large/airpods-pro-1.jpg">
+                        <img src="https://24hstore.vn/images/products/2022/12/02/large/airpods-pro-1.jpg" alt="AirPods Pro" class="product-image">
+                        <h3 class="product-name">AirPods Pro</h3>
+                        <p class="product-price">$249</p>
+                        <p class="product-description">Active noise cancellation and immersive sound.</p>
+                        <!-- <a href="">More Info ❯</a> -->
+                        <button class="buy-button" onclick="addToCart('AirPods Pro', 249, 'https://24hstore.vn/images/products/2022/12/02/large/airpods-pro-1.jpg')">Buy</button>
+                    </div>
+                    <div class="product-card"  data-name="AirPods 2nd Gen" data-description="High-quality sound with easy connectivity." data-price="$129" data-image="https://product.hstatic.net/200000845283/product/tai-nghe-apple-airpod-pro-2nd-gen-1__2__9fd9e2a7aebf475a94bc09d7d625652f.jpg">
+                        <img src="https://product.hstatic.net/200000845283/product/tai-nghe-apple-airpod-pro-2nd-gen-1__2__9fd9e2a7aebf475a94bc09d7d625652f.jpg" alt="AirPods 2nd Gen" class="product-image">
+                        <h3 class="product-name">AirPods 2nd Gen</h3>
+                        <p class="product-price">$129</p>
+                        <p class="product-description">High-quality sound with easy connectivity.</p>
+                        <!-- <a href="">More Info ❯</a> -->
+                        <button class="buy-button" onclick="addToCart('AirPods 2nd Gen', 129, 'https://product.hstatic.net/200000845283/product/tai-nghe-apple-airpod-pro-2nd-gen-1__2__9fd9e2a7aebf475a94bc09d7d625652f.jpg')">Buy</button>
+                    </div>
+                    <div class="product-card"  data-name="Airpods Max" data-description="Over-ear headphones with high-fidelity sound." data-price="$549" data-image="https://cdn2.cellphones.com.vn/x/media/catalog/product/a/p/apple-airpods-max-1_1.png">
+                        <img src="https://cdn2.cellphones.com.vn/x/media/catalog/product/a/p/apple-airpods-max-1_1.png" alt="AirPods Max" class="product-image">
+                        <h3 class="product-name">AirPods Max</h3>
+                        <p class="product-price">$549</p>
+                        <p class="product-description">Over-ear headphones with high-fidelity sound.</p>
+                        <!-- <a href="">More Info ❯</a> -->
+                        <button class="buy-button" onclick="addToCart('AirPods Max', 549, 'https://cdn2.cellphones.com.vn/x/media/catalog/product/a/p/apple-airpods-max-1_1.png')">Buy</button>
+                    </div>
+                    <div class="product-card" data-name="AirPods 3rd Gen" data-description="Enhanced audio quality and spatial audio." data-price="$169" data-image="https://didonghay.com/uploads/minh-hoa/tai-nghe-khong-day-airpods-3-rep-11-1699604939.jpg" >
+                        <img src="https://didonghay.com/uploads/minh-hoa/tai-nghe-khong-day-airpods-3-rep-11-1699604939.jpg" alt="AirPods 3rd Gen" class="product-image">
+                        <h3 class="product-name">AirPods 3rd Gen</h3>
+                        <p class="product-price">$169</p>
+                        <p class="product-description">Enhanced audio quality and spatial audio.</p>
+                        <!-- <a href="">More Info ❯</a> -->
+                        <button class="buy-button" onclick="addToCart('AirPods 3rd Gen', 169, 'https://didonghay.com/uploads/minh-hoa/tai-nghe-khong-day-airpods-3-rep-11-1699604939.jpg')">Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: Apple Watch -->
+            <div id="applewatch"></div>
+            <div class="product-category">
+                <h2 class="category-title">Apple Watch</h2> <br>
+                <div class="product-list">
+                    <div class="product-card"  data-name="Apple Watch Series 8" data-description="Advanced health tracking, including temperature sensing, ECG,..." data-price="$399" data-image="https://cdn1.viettelstore.vn/Images/Product/ProductImage/1690069536.jpeg">
+                        <img src="https://cdn1.viettelstore.vn/Images/Product/ProductImage/1690069536.jpeg" alt="Apple Watch Series 8" class="product-image">
+                        <h3 class="product-name">Apple Watch Series 8</h3>
+                        <p class="product-price">$399</p>
+                        <p class="product-description">Advanced health tracking, including temperature sensing, ECG,...</p>
+                        <!-- <a href="">More Info ❯</a> -->
+                        <button class="buy-button" onclick="addToCart('Apple Watch Series 8', 399, 'https://cdn1.viettelstore.vn/Images/Product/ProductImage/1690069536.jpeg')">Buy</button>
+                    </div>
+                    <div class="product-card"  data-name=" Apple Watch SE" data-description="All the essentials to keep you connected and healthy." data-price="$249" data-image="https://macone.vn/wp-content/uploads/2022/10/MPLT3ref_VW_34FRwatch-44-alum-midnight-nc-se_VW_34FR_WF_CO.jpeg">
+                        <img src="https://macone.vn/wp-content/uploads/2022/10/MPLT3ref_VW_34FRwatch-44-alum-midnight-nc-se_VW_34FR_WF_CO.jpeg" alt="Apple Watch SE" class="product-image">
+                        <h3 class="product-name">Apple Watch SE</h3>
+                        <p class="product-price">$249</p>
+                        <p class="product-description">All the essentials to keep you connected and healthy.</p>
+                        <!-- <a href="">More Info ❯</a> -->
+                        <button class="buy-button" onclick="addToCart('Apple Watch SE', 249, 'https://macone.vn/wp-content/uploads/2022/10/MPLT3ref_VW_34FRwatch-44-alum-midnight-nc-se_VW_34FR_WF_CO.jpeg')">Buy</button>
+                    </div>
+                    <div class="product-card"  data-name="Apple Watch Ultra" data-description="Designed for adventure and endurance." data-price="$799" data-image="https://cdn.tgdd.vn/Products/Images/7077/314714/s16/apple-watch-ultra-lte-49mm-vien-titanium-day-trail-xanh-650x650.png">
+                        <img src="https://cdn.tgdd.vn/Products/Images/7077/314714/s16/apple-watch-ultra-lte-49mm-vien-titanium-day-trail-xanh-650x650.png" alt="Apple Watch Ultra" class="product-image">
+                        <h3 class="product-name">Apple Watch Ultra</h3>
+                        <p class="product-price">$799</p>
+                        <p class="product-description">Designed for adventure and endurance.</p>
+                        <!-- <a href="">More Info ❯</a> -->
+                        <button class="buy-button" onclick="addToCart('Apple Watch Ultra', 799, 'https://cdn.tgdd.vn/Products/Images/7077/314714/s16/apple-watch-ultra-lte-49mm-vien-titanium-day-trail-xanh-650x650.png')">Buy</button>
+                    </div>
+                    <div class="product-card"  data-name="Apple Watch Series 7" data-description="Features a larger, Retina display, fast charging, and enhanced durability." data-price="$299" data-image="https://techspace.vn/wp-content/uploads/2022/09/Apple-Watch-Series-7-GPS-45mm-2-1.jpg">
+                        <img src="https://techspace.vn/wp-content/uploads/2022/09/Apple-Watch-Series-7-GPS-45mm-2-1.jpg" alt="Apple Watch Series 7" class="product-image">
+                        <h3 class="product-name">Apple Watch Series 7</h3>
+                        <p class="product-price">$299</p>
+                        <p class="product-description">Features a larger, Retina display, fast charging, and enhanced durability.</p>
+                        <!-- <a href="">More Info ❯</a> -->
+                        <button class="buy-button" onclick="addToCart('Apple Watch Series 7', 299, 'https://techspace.vn/wp-content/uploads/2022/09/Apple-Watch-Series-7-GPS-45mm-2-1.jpg')">Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: Accessories -->
+            <div id="accessories"></div>
+            <div class="product-category">
+                <h2 class="category-title">Accessories</h2> <br>
+                <div class="product-list">
+                    <div class="product-card"  data-name="iPad Smart Keyboard" data-description="Type with ease on your iPad." data-price="$179" data-image="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MXNK2?wid=2000&hei=2000&fmt=jpeg&qlt=95&.v=1665268409633">
+                        <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MXNK2?wid=2000&hei=2000&fmt=jpeg&qlt=95&.v=1665268409633" alt="iPad Smart Keyboard" class="product-image">
+                        <h3 class="product-name">iPad Smart Keyboard</h3>
+                        <p class="product-price">$179</p>
+                        <p class="product-description">Type with ease on your iPad.</p>
+                        <!-- <a href="">More Info ❯</a> -->
+                        <button class="buy-button" onclick="addToCart('iPad Smart Keyboard', 179, 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MXNK2?wid=2000&hei=2000&fmt=jpeg&qlt=95&.v=1665268409633')">Buy</button>
+                    </div>
+                    <div class="product-card"  data-name="MagSafe Charger" data-description="Effortless charging for your devices." data-price="$39" data-image="https://www.uksoftwaretech.co.uk/public/uploads/all/NjO7DwviH2bUkyA4Y1hjHyEnJeIn9CsX8nmcEhaB.webp">
+                        <img src="https://www.uksoftwaretech.co.uk/public/uploads/all/NjO7DwviH2bUkyA4Y1hjHyEnJeIn9CsX8nmcEhaB.webp" alt="MagSafe Charger" class="product-image">
+                        <h3 class="product-name">MagSafe Charger</h3>
+                        <p class="product-price">$39</p>
+                        <p class="product-description">Effortless charging for your devices.</p>
+                        <!-- <a href="">More Info ❯</a> -->
+                        <button class="buy-button" onclick="addToCart('MagSafe Charger', 39, 'https://www.uksoftwaretech.co.uk/public/uploads/all/NjO7DwviH2bUkyA4Y1hjHyEnJeIn9CsX8nmcEhaB.webp')">Buy</button>
+                    </div>
+                    <div class="product-card"  data-name="Apple Battery Pack" data-description="Keep your devices powered up." data-price="$99" data-image="https://topstore.vn/uploads/apple-magsafe-battery-pack-1_1648211577_640.jpg">
+                        <img src="https://topstore.vn/uploads/apple-magsafe-battery-pack-1_1648211577_640.jpg" alt="Battery Pack" class="product-image">
+                        <h3 class="product-name">Apple Battery Pack</h3>
+                        <p class="product-price">$99</p>
+                        <p class="product-description">Keep your devices powered up.</p>
+                        <!-- <a href="">More Info ❯</a> -->
+                        <button class="buy-button" onclick="addToCart('Apple Battery Pack', 99, 'https://topstore.vn/uploads/apple-magsafe-battery-pack-1_1648211577_640.jpg')">Buy</button>
+                    </div>
+                    <div class="product-card"  data-name="Apple Pencil" data-description="Draw and take notes with precision." data-price="$129" data-image="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MX2D3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1713841707336">
+                        <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MX2D3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1713841707336" alt="Apple Pencil" class="product-image">
+                        <h3 class="product-name">Apple Pencil</h3>
+                        <p class="product-price">$129</p>
+                        <p class="product-description">Draw and take notes with precision.</p>
+                        <!-- <a href="">More Info ❯</a> -->
+                        <button class="buy-button" onclick="addToCart('Apple Pencil', 129, 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MX2D3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1713841707336')">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="left-column">
+                <div class="social-links">
+                    <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook" style="color: blue;"></i></a>
+                    <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter" style="color: rgb(26, 227, 221);"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram" style="color: rgb(228, 64, 95);"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin" style="color: #0a85e9;"></i></a>
+                    <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube" style="color: red;"></i></a>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+                </p>
+                </div>
+            </div>
+            <div class="right-column">
+                <div class="contact-info">
+                    <p>Contact: contact@example.com</p>
+                    <p>Phone: +84 123 456 789</p>
+                </div>
+                <div class="privacy-policy">
+                    <a href="">Privicy & policy</a>
+                </div>
+            </div>
+        </div>
+    </footer> 
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+    <script src="product.js"></script>
+    <script src="slider.js"></script>
+</body>
+</html>
