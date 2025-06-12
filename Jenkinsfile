@@ -8,11 +8,11 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/zyond26/AppleStore.git'  // Thay URL repo của bạn
+                git branch: 'main', url: 'https://github.com/zyond26/AppleStore.git', credentialsId: 'github-credentials-id'
             }
         }
 
-        stage('Build Image') {
+        stage('Build Docker Image') {
             steps {
                 script {
                     dockerImage = docker.build("${DOCKER_IMAGE}:${env.BUILD_NUMBER}")
@@ -20,10 +20,10 @@ pipeline {
             }
         }
 
-        stage('Push Image') {
+        stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credentials-id') {
                         dockerImage.push()
                     }
                 }
@@ -39,13 +39,13 @@ pipeline {
             }
         }
     }
-    
+
     post {
         success {
-            echo 'Pipeline chạy thành công!'
+            echo 'Pipeline chạy thành công.'
         }
         failure {
-            echo 'Pipeline thất bại! Kiểm tra log để biết lí do.!!!!'
+            echo 'Pipeline thất bại, kiểm tra logs để tìm lỗi.'
         }
     }
 }
