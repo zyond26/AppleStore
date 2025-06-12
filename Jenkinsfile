@@ -39,13 +39,13 @@ pipeline {
             }
         }
     }
-
+    
     post {
         success {
             echo 'Pipeline chạy thành công!'
         }
         failure {
-            echo 'Pipeline thất bại! Kiểm tra log để biết lí do.'
+            echo 'Pipeline thất bại! Kiểm tra log để biết lí do.!!!!'
         }
     }
 }
